@@ -47,7 +47,6 @@ id,complaint_id,student_name,department,building,room_no,category,problem,priori
 46,CMP046,Anuradha Sen,MBA,Hostel Block,H-401,AC/Cooling,Split AC outdoor condenser unit fan rattling loudly,High,Resolved,2026-08-22,,,,
 47,CMP047,Chirag Verma,BBA,Block C,214,Cleaning,Spill mark on faculty corridor floor tiles,Low,Pending,2026-08-25,,,,
 48,CMP048,Pooja Batra,B.Tech IT,Library,Study Cubicle 8,Internet,Ethernet wall socket pins bent and connection loose,Medium,In Progress,2026-08-28,,,,
-49,CMP049,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-18,Test Tech,2026-09-18,350.0,Test fix completed
-50,CMP050,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-19,Test Tech,2026-09-18,350.0,Test fix completed
-51,CMP051,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-19,Test Tech,2026-09-18,350.0,Test fix completed
-52,CMP052,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-19,Test Tech,2026-09-18,350.0,Test fix completed
+53,CMP049,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-19,Test Tech,2026-09-18,350.0,Test fix completed
+54,CMP050,API Test User,Computer Science,Block B,301,Electrical,Switchboard sparking test,High,In Progress,2026-09-19,Test Electrician,2026-09-19,500.0,Replaced burned switchboard socket
+55,CMP051,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-19,Test Tech,2026-09-18,350.0,Test fix completed

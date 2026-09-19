@@ -254,6 +254,10 @@ def generate_repair_cost_chart(df_complaints, df_maintenance):
     return fig
 
 
+# Alias to support both naming conventions
+generate_cost_by_category_chart = generate_repair_cost_chart
+
+
 def export_to_csv(db_path=DB_PATH, output_file=None):
     """
     Exports merged complaints and maintenance details to CSV using Pandas.

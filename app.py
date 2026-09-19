@@ -443,7 +443,6 @@ with nav_tabs[0]:
                         "date": "Reported Date",
                     }
                 ),
-                use_container_width=True,
                 hide_index=True,
             )
         else:
@@ -618,7 +617,6 @@ with nav_tabs[2]:
                     "date": "Date",
                 }
             ),
-            use_container_width=True,
             height=320,
             hide_index=True,
         )
@@ -853,10 +851,10 @@ with nav_tabs[3]:
     chart_c1, chart_c2 = st.columns([1.1, 0.9])
     with chart_c1:
         fig_cat = analysis.generate_category_bar_chart(df_complaints)
-        st.pyplot(fig_cat, use_container_width=True)
+        st.pyplot(fig_cat)
     with chart_c2:
         fig_pie = analysis.generate_status_pie_chart(df_complaints)
-        st.pyplot(fig_pie, use_container_width=True)
+        st.pyplot(fig_pie)
 
     st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
@@ -864,17 +862,17 @@ with nav_tabs[3]:
     chart_c3, chart_c4 = st.columns(2)
     with chart_c3:
         fig_bldg = analysis.generate_building_bar_chart(df_complaints)
-        st.pyplot(fig_bldg, use_container_width=True)
+        st.pyplot(fig_bldg)
     with chart_c4:
         fig_trend = analysis.generate_monthly_trend_chart(df_complaints)
-        st.pyplot(fig_trend, use_container_width=True)
+        st.pyplot(fig_trend)
 
     st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
     # Visualization Row 3: Maintenance Cost by Category
     st.markdown("#### 💰 Maintenance Expenditure Distribution by Category")
-    fig_cost = analysis.generate_cost_by_category_chart(df_complaints, df_maintenance)
-    st.pyplot(fig_cost, use_container_width=True)
+    fig_cost = analysis.generate_repair_cost_chart(df_complaints, df_maintenance)
+    st.pyplot(fig_cost)
 
 
 # =============================================================================
@@ -912,7 +910,6 @@ with nav_tabs[4]:
                     "remarks": "Action / Remarks",
                 }
             ),
-            use_container_width=True,
             hide_index=True,
         )
     else:

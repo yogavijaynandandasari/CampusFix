@@ -111,16 +111,26 @@ pip install -r requirements.txt
 python verify_system.py
 ```
 
-### 4. Launch the Streamlit Web Application
+### 4. Launch the Modern Browser Dashboard (Recommended)
+Double-click `start_browser_dashboard.bat` or run:
+```bash
+python serve_web.py
+```
+*Your default web browser (Edge/Chrome/Firefox) will automatically open `http://localhost:8000` with the live interactive campus dashboard connected to SQLite.*
+
+### 5. Launch the Streamlit Web Application
+Double-click `start_streamlit_dashboard.bat` or run:
 ```bash
 streamlit run app.py
 ```
-*Your browser will automatically open to `http://localhost:8501`.*
+*Your browser will open `http://localhost:8501`.*
 
-### 5. Launch the Tkinter Desktop Application
+### 6. Launch the Tkinter Desktop Application
+Double-click `start_tkinter_desktop.bat` or run:
 ```bash
 python main.py
 ```
+*Opens the Tkinter desktop GUI fulfilling the academic project requirement.*
 
 ---
 

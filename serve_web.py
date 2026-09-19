@@ -2,6 +2,7 @@
 serve_web.py - Lightweight Web Server and REST API Bridge for CampusFix
 Serves the modern redesigned single-page application and syncs live with SQLite & Pandas.
 Zero external dependencies required (uses standard library http.server).
+Automatically opens the user's default web browser on launch.
 """
 
 import http.server
@@ -9,6 +10,7 @@ import json
 import os
 import socketserver
 import sys
+import threading
 import urllib.parse
 import webbrowser
 
@@ -26,6 +28,13 @@ INDEX_HTML_PATH = os.path.join(BASE_DIR, "index.html")
 class CampusFixHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
 
     def do_GET(self):
         parsed_url = urllib.parse.urlparse(self.path)
@@ -51,6 +60,29 @@ class CampusFixHandler(http.server.SimpleHTTPRequestHandler):
             metrics = analysis.calculate_metrics()
             self.send_json_response(metrics)
             return
+
+        # API Route: Trigger Pandas CSV Export
+        elif path == "/api/export-csv":
+            success, filepath = analysis.export_to_csv()
+            self.send_json_response({"success": success, "filepath": filepath})
+            return
+
+        # Route: Download Complaints Report CSV
+        elif path in ["/reports/complaints_report.csv", "/api/download-csv"]:
+            report_path = os.path.join(BASE_DIR, "reports", "complaints_report.csv")
+            if not os.path.exists(report_path):
+                analysis.export_to_csv()
+            if os.path.exists(report_path):
+                with open(report_path, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/csv; charset=utf-8")
+                self.send_header("Content-Disposition", 'attachment; filename="complaints_report.csv"')
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(content)
+                return
 
         # Default static file handler
         return super().do_GET()
@@ -146,8 +178,17 @@ class CampusFixHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
         self.wfile.write(body)
+
+
+def launch_browser(url):
+    try:
+        webbrowser.open(url)
+    except Exception as e:
+        print(f"Note: Could not open browser automatically: {e}")
 
 
 def run_server(port=PORT):
@@ -159,10 +200,18 @@ def run_server(port=PORT):
     with socketserver.TCPServer(("", port), CampusFixHandler) as httpd:
         url = f"http://localhost:{port}"
         print("=" * 65)
-        print(f"  CampusFix Web Application is live at: {url}")
+        print("  CAMPUS MAINTENANCE COMPLAINT & TRACKING SYSTEM")
+        print(f"  Browser Dashboard is live at: {url}")
         print("  Connected to SQLite DB: data/campus.db")
+        print("  Automatically opening default web browser...")
         print("  Press Ctrl+C to stop the server.")
         print("=" * 65)
+
+        # Trigger automatic browser opening in background after 0.5s
+        timer = threading.Timer(0.5, launch_browser, args=[url])
+        timer.daemon = True
+        timer.start()
+
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

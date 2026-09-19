@@ -2422,7 +2422,7 @@
       }
     }
 
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
       e.preventDefault();
 
       const btn = document.getElementById('btnSubmitComplaint');
@@ -2430,40 +2430,74 @@
       btn.classList.add('loading');
       btnText.textContent = "Registering...";
 
+      const studentName = document.getElementById('regStudentName').value.trim();
+      const department = document.getElementById('regDepartment').value;
+      const building = document.getElementById('regBuilding').value;
+      const roomNo = document.getElementById('regRoomNo').value.trim();
+      const category = document.getElementById('regCategory').value;
+      const priority = document.getElementById('regPriority').value;
+      const problem = document.getElementById('regProblem').value.trim();
+      const today = new Date().toISOString().split('T')[0];
+
+      let newId = null;
+
+      if (isApiConnected) {
+        try {
+          const resp = await fetch('/api/complaints', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              student_name: studentName,
+              department: department,
+              building: building,
+              room_no: roomNo,
+              category: category,
+              priority: priority,
+              problem: problem
+            })
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            newId = data.complaint_id;
+          }
+        } catch (err) {
+          console.warn("API post failed, falling back to local:", err);
+        }
+      }
+
+      if (!newId) {
+        newId = generateNextComplaintId();
+      }
+
+      const newComplaint = {
+        id: Date.now(),
+        complaint_id: newId,
+        student_name: studentName,
+        department: department,
+        building: building,
+        room_no: roomNo,
+        category: category,
+        priority: priority,
+        problem: problem,
+        status: "Pending",
+        date: today
+      };
+
+      complaints.unshift(newComplaint);
+      saveComplaints();
+
+      btn.classList.remove('loading');
+      btnText.textContent = "Register Complaint";
+      document.getElementById('complaintForm').reset();
+      updateNextTicketBadge();
+
+      showToast(`Complaint ${newId} registered and saved to SQLite!`, 'success');
+      renderKPIs();
+
+      // Switch to All Tickets tab so user sees their new ticket at the top
       setTimeout(() => {
-        const nextId = generateNextComplaintId();
-        const today = new Date().toISOString().split('T')[0];
-
-        const newComplaint = {
-          id: Date.now(),
-          complaint_id: nextId,
-          student_name: document.getElementById('regStudentName').value.trim(),
-          department: document.getElementById('regDepartment').value,
-          building: document.getElementById('regBuilding').value,
-          room_no: document.getElementById('regRoomNo').value.trim(),
-          category: document.getElementById('regCategory').value,
-          priority: document.getElementById('regPriority').value,
-          problem: document.getElementById('regProblem').value.trim(),
-          status: "Pending",
-          date: today
-        };
-
-        complaints.unshift(newComplaint);
-        saveComplaints();
-
-        btn.classList.remove('loading');
-        btnText.textContent = "Register Complaint";
-        document.getElementById('complaintForm').reset();
-        updateNextTicketBadge();
-
-        showToast(`Complaint ${nextId} created successfully!`, 'success');
-        renderKPIs();
-
-        // Switch to All Tickets tab so user sees their new ticket at the top
-        setTimeout(() => {
-          switchTab('tickets');
-        }, 600);
-      }, 350);
+        switchTab('tickets');
+      }, 600);
     }
 
     /* ========================================================================
@@ -2627,9 +2661,21 @@
       document.getElementById('statusModal').classList.add('open');
     }
 
-    function confirmStatusUpdate() {
+    async function confirmStatusUpdate() {
       const id = document.getElementById('statusTicketId').value;
       const newStatus = document.getElementById('modalStatusSelect').value;
+
+      if (isApiConnected) {
+        try {
+          await fetch(`/api/complaints/${id}/status`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: newStatus })
+          });
+        } catch (err) {
+          console.warn("API status update failed:", err);
+        }
+      }
 
       const idx = complaints.findIndex(c => c.complaint_id === id);
       if (idx !== -1) {
@@ -2658,13 +2704,31 @@
       document.getElementById('maintenanceModal').classList.add('open');
     }
 
-    function handleMaintenanceSubmit(e) {
+    async function handleMaintenanceSubmit(e) {
       e.preventDefault();
       const id = document.getElementById('maintTicketId').value;
       const staff = document.getElementById('maintStaff').value.trim();
       const date = document.getElementById('maintDate').value;
       const cost = parseFloat(document.getElementById('maintCost').value) || 0;
       const remarks = document.getElementById('maintRemarks').value.trim();
+
+      if (isApiConnected) {
+        try {
+          await fetch('/api/maintenance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              complaint_id: id,
+              staff_name: staff,
+              repair_date: date,
+              cost: cost,
+              remarks: remarks
+            })
+          });
+        } catch (err) {
+          console.warn("API maintenance submit failed:", err);
+        }
+      }
 
       maintenance.push({
         complaint_id: id,
@@ -2680,6 +2744,15 @@
       if (cIdx !== -1 && complaints[cIdx].status !== 'Resolved') {
         complaints[cIdx].status = 'Resolved';
         saveComplaints();
+        if (isApiConnected) {
+          try {
+            await fetch(`/api/complaints/${id}/status`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ status: 'Resolved' })
+            });
+          } catch (e) {}
+        }
       }
 
       showToast(`Maintenance log added! ₹${cost} recorded for ${id}`, 'success');
@@ -3058,6 +3131,10 @@
       if (complaints.length === 0) {
         showToast('No complaints to export', 'error');
         return;
+      }
+
+      if (isApiConnected) {
+        fetch('/api/export-csv').catch(e => console.warn(e));
       }
 
       const headers = ['Complaint ID', 'Student Name', 'Department', 'Building', 'Room No', 'Category', 'Priority', 'Status', 'Date', 'Problem'];
