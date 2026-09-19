@@ -1,0 +1,50 @@
+id,complaint_id,student_name,department,building,room_no,category,problem,priority,status,date,staff_name,repair_date,cost,remarks
+1,CMP001,Rahul Sharma,BCA,Block A,204,Electrical,Ceiling fan not working and making ticking noise,Medium,Pending,2026-03-10,,,,
+2,CMP002,Priya Verma,B.Tech CSE,Block B,102,Furniture,Broken bench and wooden chair leg damaged,Low,Resolved,2026-03-15,Ramesh Carpenter,2026-03-17,180.0,Reinforced bench base and replaced wooden leg support
+3,CMP003,Amit Patel,MCA,Computer Lab,Lab 2,IT,Desktop PC #14 monitor not turning on and blue screen,High,In Progress,2026-03-22,Anil IT Tech,2026-03-24,450.0,Replaced faulty monitor VGA cable and CMOS battery
+4,CMP004,Sneha Rao,B.Tech ECE,Block C,305,Plumbing,Washroom tap continuous water leakage,High,Resolved,2026-03-28,Madan Plumber,2026-03-29,350.0,Replaced internal rubber washer and brass spindle valve
+5,CMP005,Vikas Nair,BCA,Block A,108,Internet,Wi-Fi access point SSID not broadcasting in lecture hall,Medium,Pending,2026-04-02,,,,
+6,CMP006,Ananya Ghosh,MBA,Library,Reading Hall 1,Internet,Frequent Wi-Fi disconnections during online research,High,Resolved,2026-04-05,Suresh NetTech,2026-04-07,650.0,Reconfigured Cisco wireless access point channel bandwidth
+7,CMP007,Rohan Gupta,B.Tech ME,Hostel Block,H-204,AC/Cooling,Wall air conditioner unit blowing warm air,High,Resolved,2026-04-11,Dinesh HVAC,2026-04-14,3200.0,"Flushed condenser coils, patched copper joint and refilled R32 refrigerant gas"
+8,CMP008,Meera Iyer,BCA,Library,Stack Area,Cleaning,Dust accumulation and waste bin overflow in section B,Low,Resolved,2026-04-16,Santosh Housekeeping,2026-04-17,120.0,Cleaned book stack area and installed heavy duty trash bins
+9,CMP009,Arjun Reddy,B.Tech CSE,Computer Lab,Lab 1,IT,Projector HDMI display flickering continuously,High,Pending,2026-04-20,,,,
+10,CMP010,Kavita Joshi,BBA,Block B,210,Furniture,Classroom podium hinge broken and wobbly table,Medium,In Progress,2026-04-25,Ramesh Carpenter,2026-04-27,220.0,Screwed new steel hinges on podium cabinet
+11,CMP011,Deepak Singh,MCA,Library,Digital Library,Internet,LAN port dead at terminal desks 5 through 8,High,Resolved,2026-05-02,Suresh NetTech,2026-05-05,550.0,Re-crimped RJ45 connectors and punched down 4 patch panel ports
+12,CMP012,Pooja Hegde,B.Tech ECE,Block A,312,Electrical,Tube light blinking intermittently causing disturbance,Low,Pending,2026-05-04,,,,
+13,CMP013,Suresh Kumar,BCA,Block C,118,Plumbing,Handwash sink drain pipe clogged and overflowing,High,Resolved,2026-05-08,Madan Plumber,2026-05-10,420.0,Cleared PVC drain bottleneck with auger snake and replaced P-trap
+14,CMP014,Neha Kapoor,B.Tech CSE,Computer Lab,AI Lab,IT,Keyboard keys sticky and optical mouse sensor faulty,Low,Resolved,2026-05-12,Anil IT Tech,2026-05-14,350.0,Cleaned mechanical keyboard membrane and issued optical laser mouse
+15,CMP015,Karan Malhotra,Hostel Block,Hostel Block,H-105,AC/Cooling,Window cooler motor stopped running completely,High,In Progress,2026-05-15,Dinesh HVAC,2026-05-18,1200.0,Replaced burnt cooler water pump and greased blower motor
+16,CMP016,Divya Pillai,MBA,Library,Reference Room,Furniture,Two study chairs with torn armrests and uneven base,Low,Resolved,2026-05-19,Ramesh Carpenter,2026-05-21,280.0,Reupholstered chair arms with synthetic leather fabric
+17,CMP017,Gaurav Sen,B.Tech IT,Library,Floor 2,Internet,Wi-Fi signal strength extremely weak on north wing,Medium,Pending,2026-05-22,,,,
+18,CMP018,Ritu Saxena,BBA,Block A,101,Other,Classroom door lock jammed and latch stuck,Medium,Resolved,2026-05-25,Naresh Locksmith,2026-05-27,450.0,Lubricated lock tumbler and replaced mortise cylinder latch
+19,CMP019,Manoj Tiwari,B.Tech ME,Block B,Workshop A,Electrical,Main power distribution board switch tripping often,High,In Progress,2026-05-28,Vinod Electrician,2026-05-30,380.0,Replaced faulty 32A MCB breaker with new Schneider unit
+20,CMP020,Simran Kaur,MCA,Library,Quiet Zone,Cleaning,Spilled beverage stains on carpet needing shampoo cleaning,Medium,Resolved,2026-06-01,Santosh Housekeeping,2026-06-01,350.0,Industrial vacuum carpet extraction and citrus deodorizer applied
+21,CMP021,Aditya Roy,BCA,Block C,202,Furniture,Lecture desk top detached from metallic frame,Medium,In Progress,2026-06-03,,,,
+22,CMP022,Tanvi Deshmukh,B.Tech CSE,Library,Floor 1,Internet,Gateway router drops internet packets during peak hours,High,Resolved,2026-06-06,Suresh NetTech,2026-06-08,780.0,Updated router firmware and implemented QoS bandwidth limiter
+23,CMP023,Nikhil Chawla,B.Tech ECE,Hostel Block,Dining Hall,AC/Cooling,Duct AC vibrating excessively and leaking condensation,High,Resolved,2026-06-10,Dinesh HVAC,2026-06-13,2650.0,Tightened compressor mounting brackets and cleared drainage pipe
+24,CMP024,Shweta Nambiar,MBA,Block A,Seminar Hall,IT,Ceiling audio amplifier producing high pitch buzzing noise,Medium,Pending,2026-06-14,,,,
+25,CMP025,Harsh Vardhan,BBA,Block B,304,Cleaning,Whiteboard marker residue stain and dusty window sills,Low,Pending,2026-06-18,,,,
+26,CMP026,Aakash Jain,MCA,Computer Lab,Lab 3,IT,Operating system boot failure on Server 2,High,Resolved,2026-06-22,Anil IT Tech,2026-06-25,1400.0,Replaced failed SATA SSD and restored OS image from backup NAS
+27,CMP027,Pallavi Menon,B.Tech IT,Library,Periodicals,Furniture,Magazine display rack shelving bent and loose,Low,Pending,2026-06-26,,,,
+28,CMP028,Tarun Rathore,B.Tech ME,Hostel Block,H-310,Plumbing,"Shower tap valve broken, water spraying onto wall",High,In Progress,2026-06-29,,,,
+29,CMP029,Bhavna Swaminathan,BCA,Library,Reading Hall 2,Internet,IP address conflict warning when connecting to Wi-Fi,Medium,Pending,2026-07-02,,,,
+30,CMP030,Siddharth Das,B.Tech CSE,Block A,205,Electrical,Wall power socket sparking when laptop charger plugged,High,In Progress,2026-07-06,,,,
+31,CMP031,Ayesha Siddiqui,B.Tech ECE,Block C,104,Other,Window glass pane cracked by tree branch during storm,Medium,Resolved,2026-07-10,Naresh Glazier,2026-07-13,1540.0,Removed shattered 4mm float pane and installed laminated safety glass
+32,CMP032,Kunal Biswas,MBA,Library,Group Study 3,Furniture,Table legs loose causing monitors to wobble,Low,In Progress,2026-07-15,,,,
+33,CMP033,Roshni Roy,BBA,Hostel Block,Common Room,AC/Cooling,AC remote sensor receiver broken and unresponsive,Medium,Pending,2026-07-18,,,,
+34,CMP034,Varun Chauhan,MCA,Library,Lobby,Cleaning,Floor tiles sticky near drinking water dispenser,Low,Pending,2026-07-22,,,,
+35,CMP035,Isha Bhatt,BCA,Computer Lab,Lab 2,IT,Network switch port 12 flapping up and down,High,In Progress,2026-07-25,,,,
+36,CMP036,Mohit Pandey,B.Tech IT,Block A,308,Internet,Wi-Fi authentication captive portal page failing to load,Medium,Resolved,2026-07-29,,,,
+37,CMP037,Ankita Saxena,B.Tech CSE,Block B,215,Furniture,Teacher dais table drawer jammed shut,Low,Pending,2026-08-01,,,,
+38,CMP038,Sanjay Rao,B.Tech ME,Hostel Block,H-112,Electrical,Exhaust fan motor seized in hostel washroom,Medium,Resolved,2026-08-04,Vinod Electrician,2026-08-06,850.0,Replaced burnt copper armature coil on Bajaj exhaust fan
+39,CMP039,Pratibha Joshi,MBA,Library,Archives,Internet,Wi-Fi dead zone identified between book aisles 12-16,Medium,Pending,2026-08-07,,,,
+40,CMP040,Kartik Sundaram,BBA,Block C,301,Plumbing,Water cooler filter clogged resulting in low trickle,Medium,Pending,2026-08-10,,,,
+41,CMP041,Manish Paul,MCA,Library,Server Room,Internet,Fiber optic patch cord bend attenuation causing latency,High,In Progress,2026-08-12,,,,
+42,CMP042,Geeta Krishna,BCA,Block A,110,Electrical,Switchboard faceplate broken and exposed wiring,High,Pending,2026-08-14,,,,
+43,CMP043,Yashwant Patil,Hostel Block,Hostel Block,H-220,Furniture,Steel almirah lock misaligned and door won't latch,Low,Pending,2026-08-16,,,,
+44,CMP044,Swati Bose,B.Tech CSE,Computer Lab,IoT Lab,IT,Microcontroller lab programmer board USB faulty,Medium,Pending,2026-08-18,,,,
+45,CMP045,Rupesh Nair,B.Tech ECE,Library,Floor 3,Internet,High latency and ping dropouts on campus guest Wi-Fi,Medium,Pending,2026-08-20,,,,
+46,CMP046,Anuradha Sen,MBA,Hostel Block,H-401,AC/Cooling,Split AC outdoor condenser unit fan rattling loudly,High,Resolved,2026-08-22,,,,
+47,CMP047,Chirag Verma,BBA,Block C,214,Cleaning,Spill mark on faculty corridor floor tiles,Low,Pending,2026-08-25,,,,
+48,CMP048,Pooja Batra,B.Tech IT,Library,Study Cubicle 8,Internet,Ethernet wall socket pins bent and connection loose,Medium,In Progress,2026-08-28,,,,
+49,CMP049,Test Student,BCA,Block A,105,Electrical,Test issue verification,High,In Progress,2026-09-18,Test Tech,2026-09-18,350.0,Test fix completed
