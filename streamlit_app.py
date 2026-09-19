@@ -1,19 +1,10 @@
-import streamlit as st
+"""
+streamlit_app.py - Streamlit Cloud Entry Point for CampusFix.
+Ensures seamless deployment whether Streamlit targets app.py or streamlit_app.py.
+"""
+import os
+import runpy
 
-st.title("CampusFix")
-st.write("Campus Maintenance Control System")
-
-st.header("Dashboard")
-st.info("System overview and maintenance tracking.")
-
-st.header("Report an Issue")
-st.button("Submit Complaint")
-
-st.header("All Tickets")
-st.button("View All Tickets")
-
-st.header("Maintenance")
-st.button("Update Maintenance Details")
-
-st.header("Reports")
-st.button("View Reports & Charts")
+if __name__ == "__main__":
+    app_path = os.path.join(os.path.dirname(__file__), "app.py")
+    runpy.run_path(app_path, run_name="__main__")

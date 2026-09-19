@@ -7,8 +7,11 @@ import os
 import sqlite3
 import pandas as pd
 import matplotlib
-# Use TkAgg backend when running in desktop GUI
-matplotlib.use("TkAgg")
+# Headless-safe backend suitable for both Streamlit web and Tkinter desktop GUI
+try:
+    matplotlib.use("Agg")
+except Exception:
+    pass
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
