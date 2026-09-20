@@ -1,14 +1,55 @@
-# Python bytecode
+# =============================================================================
+# Git Ignore Configuration for Campus Maintenance Complaint & Tracking System
+# =============================================================================
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
-# Environment
-.env
+# C extensions
+*.obj
+*.o
+*.lib
+
+# Virtual Environments
 venv/
 env/
+ENV/
 .venv/
+env.bak/
+venv.bak/
+
+# Environment Variables & Sensitive Credentials
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.cert
+*.secrets
+secrets.toml
+
+# IDE & Editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
 
 # Operating System Files
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and databases
+*.log
+*.sqlite-journal
+
+# Temporary / Scratch files
+scratch/
+temp/
+tmp/
